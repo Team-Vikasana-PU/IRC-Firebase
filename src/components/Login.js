@@ -86,8 +86,8 @@ const Login = () => {
               </div>
 
               <div className='flex flex-col text-center md:text-left mt-10 md:mt-0'>
-                <h1 className='font-monument text-bold text-md md:text-2xl'>LOG IN/SIGN UP TO YOUR ACCOUNT</h1>
-                <h2 className='w-full md:w-3/4 text-sm md:text-md font-tele text-white/80 mt-5'>lorem lorem lorem loreml orem lorem lorem lorem lorem lorem</h2>
+                <h1 className='font-monument text-bold text-md md:text-2xl'>LOG IN TO YOUR ACCOUNT</h1>
+                <h2 className='w-full md:w-3/4 text-sm md:text-md font-tele text-white/80 mt-5'>Log in to stay in-the-know about the event</h2>
                 <div className='flex flex-col mt-2 md:mt-5'>
                   <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
                   

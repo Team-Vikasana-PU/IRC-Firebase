@@ -114,9 +114,9 @@ const Register = () => {
     
 
   return (
-    <div className='w-full bg-cover bg-fixed bg-background pb-10' style={{backgroundImage: `url(${bg})`}}>
+    <div className='w-full bg-cover bg-fixed bg-background pb-10'>
         <form className='w-full flex flex-col items-center' onSubmit={handleSubmit}>
-        <div className='register-container flex flex-col w-2/5 text-stone-50 py-10'>
+        <div className='register-container flex flex-col w-11/12 md:w-2/5 text-stone-50 py-10'>
             <div className='image-container mb-5'>
                 <img className='' src={banner} />
             </div>
@@ -132,7 +132,7 @@ const Register = () => {
                 <h1 className='text-2xl'>Email</h1>
                 <TextField
                 required
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Email" 
                 type="email"
@@ -146,7 +146,7 @@ const Register = () => {
                 {/* <input className='mt-8 bg-transparent border-b-2 border-stone-100 w-2/3 placeholder:text-form pb-1' placeholder='Your first name...' type='text' name='f_name' /> */}
                 <TextField
                 required
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="First name" 
                 variant="standard"
@@ -158,7 +158,7 @@ const Register = () => {
                 <h1 className='text-2xl'>Last Name</h1>
                 <TextField
                 required
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Last name" 
                 variant="standard" 
@@ -170,7 +170,7 @@ const Register = () => {
                 <h1 className='text-2xl'>Mobile Number</h1>
                 <TextField
                 required
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Mobile number" 
                 variant="standard"
@@ -180,7 +180,7 @@ const Register = () => {
 
             <div className='input-container w-full mt-5 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Team Name</h1>
-                <FormControl className='!mt-8 w-64'>
+                <FormControl className='!mt-8 w-full md:w-64'>
                     <InputLabel id="demo-simple-select-label">Team Name</InputLabel>
                     
                     <Select
@@ -209,7 +209,7 @@ const Register = () => {
                     <TextField
                         required
                         
-                        className="!mt-8 w-2/3" 
+                        className="!mt-8 w-full md:w-2/3" 
                         id="standard-basic" 
                         label="University Name" 
                         variant="standard"
@@ -242,7 +242,7 @@ const Register = () => {
                     pictureError &&
                     <h1 className='text-lg text-red-600'>Invalid Image Selected</h1>
                 }
-                <Button sx={{width:'500px'}} className='!rounded-lg !py-3 !mt-8 !w-64 text-left !text-blue-600 !bg-transparent !border-solid !border !border-stone-50' variant="contained" component="label">
+                <Button sx={{width:'500px'}} className='!rounded-lg !py-3 !mt-8 !w-full !md:w-64 text-left !text-blue-600 !bg-transparent !border-solid !border !border-stone-50' variant="contained" component="label">
                     { picture ? <ImageIcon /> : <UploadIcon /> }
                     <p className='whitespace-nowrap	overflow-hidden text-ellipsis'>
                     { picture ? picture.name : 'Upload Image' }

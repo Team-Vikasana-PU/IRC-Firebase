@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, NavLink} from 'react-router-dom'
 
 import { auth, db, teams_collection, storage } from '../firebase'
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -44,7 +44,7 @@ const Navbar = () => {
   if(loading) return null
 
   return (
-    <nav className='flex fixed w-screen  flex-col md:flex-row justify-between items-center z-50'>
+    <nav className='flex fixed w-screen bg-black/70 md:bg-transparent flex-col md:flex-row justify-between items-center z-50'>
       <div className='flex w-full justify-between items-center px-8 py-6'>
         <div>
           <h1 onClick={() => navigate('/')} className='text-3xl flex font-monument cursor-pointer'>Vikasana</h1>
@@ -53,10 +53,12 @@ const Navbar = () => {
 
         <div className='hidden md:block'>
           <ul className='flex font-tele'>
-            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer'>About</li>
-            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer'>Contact us</li>
-            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer'>College Map</li>
-            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer'>Sponsors</li>
+            <NavLink onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>About</NavLink>
+            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>Contact us</li>
+            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>College Map</li>
+            <NavLink to="/accommodation" style={({ isActive }) =>
+              isActive ? {textDecoration:'underline', textDecorationColor:'#FE23A8', textUnderlineOffset: '8px', textDecorationThickness: '2px'} : undefined
+            } className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>Accommodation</NavLink>
             
           </ul>
         </div>
@@ -66,26 +68,26 @@ const Navbar = () => {
             user ? 
               data ?
                 <div className='flex items-center'>
-                  <button onClick={() => navigate('/profile')} className='text-xl bg-gradientBlue active:bg-blue-500 border-2 border-solid border-white py-1 px-4 rounded-xl mr-5'>Profile</button>
-                  <LogoutIcon onClick={async () => {
+                  <button onClick={() => navigate('/profile')} className='text-xl bg-gradientBlue active:bg-blue-500 border-2 border-solid border-white py-1 px-4 rounded-lg mr-5'>PROFILE</button>
+                  <button onClick={async () => {
                     auth.signOut()
                     setUser()
                     setData()
                     navigate('/')
-                  }} fontSize='large' className='cursor-pointer text-red-600' />
+                  }} className='text-xl bg-red-600 active:bg-red-500 border-2 border-solid border-white py-1 px-4 rounded-lg mr-5'>LOGOUT</button>
                 </div>
                 :
                 <div className='flex items-center'>
-                  <button onClick={() => navigate('/register')} className='text-xl bg-gradientBlue active:bg-blue-500 border-2 border-solid border-white py-1 px-4 rounded-xl mr-5'>Register</button>
-                  <LogoutIcon onClick={async () => {
+                  <button onClick={() => navigate('/register')} className='text-xl bg-gradientBlue active:bg-blue-500 border-2 border-solid border-white py-1 px-4 rounded-lg mr-5'>REGISTER</button>
+                  <button onClick={async () => {
                     auth.signOut()
                     setUser()
                     setData()
                     navigate('/')
-                  }} fontSize='large' className='cursor-pointer text-red-600' />
+                  }} className='text-xl bg-red-600 active:bg-red-500 border-2 border-solid border-white py-1 px-4 rounded-lg mr-5'>LOGOUT</button>
                 </div>
               :
-              <button onClick={() => navigate('/login')} className='text-xl bg-gradientBlue active:bg-blue-500 border-2 border-solid border-white py-1 px-3 rounded-xl'>Participant Login</button>
+              <button onClick={() => navigate('/login')} className='text-xl bg-gradientBlue active:bg-blue-500 border-2 border-solid border-white py-1 px-3 rounded-lg'>PARTICIPANT LOGIN</button>
           }
         </div>
           
@@ -94,21 +96,21 @@ const Navbar = () => {
         </div>
       </div>
 
-      <Collapse style={{height: '100vh', width:'100vw', display: showMobile? 'block' : 'none'}} in={showMobile}>
+      <Collapse timeout={1000} style={{height: '100vh', width:'100vw', display: showMobile? 'block' : 'none'}} in={showMobile}>
         <div className={`mobile-menu bg-black/70 backdrop-blur-sm h-screen w-full`}>
           <div className=' w-full justify-center items-center'>
             <ul className='flex flex-col items-center font-tele'>
               <li className='py-5 text-xl'>About</li>
               <li className='py-5 text-xl'>Contact us</li>
               <li className='py-5 text-xl'>College Map</li>
-              <li className='py-5 text-xl'>Sponsors</li>
+              <li onClick={() => navigate('/accommodation')} className='py-5 text-xl'>Accommodation</li>
               
               <li className='py-5 text-xl'>
               {
                 user ? 
                   data ?
                     <div className='flex items-center'>
-                      <button onClick={() => navigate('/profile')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-4 rounded-xl mr-3'>Profile</button>
+                      <button onClick={() => navigate('/profile')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-4 rounded-lg mr-3'>PROFILE</button>
                       <LogoutIcon onClick={async () => {
                         await signOut(auth)
                         navigate('/')
@@ -116,14 +118,14 @@ const Navbar = () => {
                     </div>
                     :
                     <div className='flex items-center'>
-                      <button onClick={() => navigate('/register')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-4 rounded-xl mr-3'>Register</button>
+                      <button onClick={() => navigate('/register')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-4 rounded-lg mr-3'>REGISTER</button>
                       <LogoutIcon onClick={async () => {
                         await signOut(auth)
                         navigate('/')
                       }} fontSize='large' className='text-red-600' />
                     </div>
                   :
-                  <button onClick={() => navigate('/login')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-3 rounded-xl'>Participant Login</button>
+                  <button onClick={() => navigate('/login')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-3 rounded-lg'>PARTICIPANT LOGIN</button>
               }
               </li>
 

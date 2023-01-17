@@ -5,6 +5,7 @@
 body {
   padding: 0!important;
   overflow: auto!important;
+  background-color: #0F0F0F;
 }
 
 @font-face {
@@ -148,13 +149,13 @@ button {
   border-style: solid!important;
   width: 100%!important;
   max-width: 100%!important;
-  padding: 20px 20px!important;
+  padding: 15px 20px!important;
 }
 
 
 .firebaseui-idp-icon {
-  width: 40px!important;
-  height: 40px!important;
+  width: 35px!important;
+  height: 35px!important;
 }
 
 .firebaseui-idp-text {
@@ -205,6 +206,7 @@ button {
 }
 
 
+
 @media (max-width: 768px) {
 
   .firebaseui-idp-button {
@@ -219,6 +221,10 @@ button {
   .firebaseui-idp-text {
     
     font-size: 16px!important;
+  }
+
+  .index-bg {
+    background-image: url(./assets/home_mobile_bg.png);
   }
   
 }

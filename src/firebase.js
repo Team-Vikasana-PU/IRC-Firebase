@@ -27,6 +27,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const collection = fb_collection(db, 'participants')
 const teams_collection = fb_collection(db, 'teams')
+const hotels_collection = fb_collection(db, 'hotel')
 const storage = getStorage(app)
 
-export {auth, db, collection, teams_collection, storage}
+export {auth, db, collection, teams_collection, hotels_collection, storage}
