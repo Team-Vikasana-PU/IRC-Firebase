@@ -46,6 +46,28 @@ body {
   background-image: linear-gradient(79deg, #1e1e27, #293142, #291f15);
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(255, 255, 255, 1);
+  opacity: 1;
+  display: block;
+  background: url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png) no-repeat;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+  color: white !important;
+}
+
+.Mui-disabled input {
+  color: rgb(209, 209, 209)!important;
+  -webkit-text-fill-color: rgb(209, 209, 209)!important;
+}
+
 .auth-form-container, .login-form, .register-form{
   display: flex;
   flex-direction: column;

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, OAuthProvider, signOut } from "firebase/auth";
 
+import Navbar from './Navbar'
+
 import { auth, db, collection } from '../firebase'
 import { doc, getDoc, addDoc } from "firebase/firestore";
 
@@ -62,6 +64,8 @@ const Login = () => {
   }, [])
 
   return (
+    <>
+    <Navbar />
     <div className='login-bg overflow-y-hidden w-screen h-screen flex flex-col md:flex-row'>
         <div className='login-bg-image h-full w-full md:w-1/2 z-10 relative'>
             {/* <img className='' src={login_bg} /> */}
@@ -79,13 +83,13 @@ const Login = () => {
 
             <div className='glass-bg w-full absolute right-0 h-full flex flex-col items-center justify-center py-5 px-8 md:px-44'>
 
-              <div className='absolute top-5 md:top-10 flex'>
+              <div className='absolute top-5 md:top-20 flex'>
                 <img className='mr-5' src={spros} />
                 <img className='mr-5' src={pu} />
                 <img className='mr-5' src={vikasana} />
               </div>
 
-              <div className='flex flex-col text-center md:text-left mt-10 md:mt-0'>
+              <div className='flex flex-col text-center md:text-left pt-16 md:mt-0'>
                 <h1 className='font-monument text-bold text-md md:text-2xl'>LOG IN TO YOUR ACCOUNT</h1>
                 <h2 className='w-full md:w-3/4 text-sm md:text-md font-tele text-white/80 mt-5'>Log in to stay in-the-know about the event</h2>
                 <div className='flex flex-col mt-2 md:mt-5'>
@@ -111,6 +115,7 @@ const Login = () => {
 
 
     </div>
+    </>
   )
 }
 

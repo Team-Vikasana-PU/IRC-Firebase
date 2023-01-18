@@ -4,6 +4,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import Accommodation from './components/Accommodation';
+import Map from './components/Map';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/accommodation' element={<Accommodation />} />
+        <Route path='/map' element={<Map />} />
       </Routes>
       </div>
     

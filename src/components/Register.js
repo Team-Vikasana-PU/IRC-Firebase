@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Navbar from './Navbar'
 
 import { useNavigate } from 'react-router-dom';
 
@@ -54,10 +55,14 @@ const Register = () => {
     const [fName, setFName] = useState('')
     const [lName, setLName] = useState('')
     const [mobileNo, setMobileNo] = useState('')
+    const [bloodGroup, setBloodGroup] = useState('')
+    const [instructorName, setInstructorName] = useState('')
+    const [instructorNumber, setInstructorNumber] = useState('')
     const [team, setTeam] = useState('')
     const [allTeams, setAllTeams] = useState([])
     const [university, setUniversity] = useState('')
     const [picture, setPicture] = useState()
+    const [arrivalDate, setArrivalDate] = useState('')
 
     const [pictureError, setPictureError] = useState(false)
 
@@ -98,7 +103,11 @@ const Register = () => {
             first_name: fName,
             last_name: lName,
             mobile: mobileNo,
+            blood: bloodGroup,
             team: team.name,
+            instructor_name: instructorName,
+            instructor_number: instructorNumber,
+            arrival_date: arrivalDate,
             university: team.university,
             team_ref: team.id,
             avatar: imageURL,
@@ -114,7 +123,9 @@ const Register = () => {
     
 
   return (
-    <div className='w-full bg-cover bg-fixed bg-background pb-10'>
+    <>
+    <Navbar />
+    <div className='w-full bg-cover bg-fixed bg-background py-10'>
         <form className='w-full flex flex-col items-center' onSubmit={handleSubmit}>
         <div className='register-container flex flex-col w-11/12 md:w-2/5 text-stone-50 py-10'>
             <div className='image-container mb-5'>
@@ -128,7 +139,7 @@ const Register = () => {
                 <p className='text-form mt-2'>lorem lorem lorem lorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem lorem</p>
             </div>
 
-            <div className='input-container w-full mt-5 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Email</h1>
                 <TextField
                 required
@@ -141,7 +152,7 @@ const Register = () => {
                 />
             </div>
 
-            <div className='input-container w-full mt-5 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>First Name</h1>
                 {/* <input className='mt-8 bg-transparent border-b-2 border-stone-100 w-2/3 placeholder:text-form pb-1' placeholder='Your first name...' type='text' name='f_name' /> */}
                 <TextField
@@ -154,7 +165,7 @@ const Register = () => {
                 />
             </div>
 
-            <div className='input-container w-full mt-5 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Last Name</h1>
                 <TextField
                 required
@@ -166,7 +177,7 @@ const Register = () => {
                 />
             </div>
 
-            <div className='input-container w-full mt-5 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Mobile Number</h1>
                 <TextField
                 required
@@ -177,8 +188,57 @@ const Register = () => {
                 onChange={(e) => {setMobileNo(e.target.value)}}
                 />
             </div>
+            
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                <h1 className='text-2xl'>Blood Group</h1>
+                <TextField
+                required
+                className="!mt-8 w-full md:w-2/3" 
+                id="standard-basic" 
+                label="Blood Group" 
+                variant="standard"
+                onChange={(e) => {setBloodGroup(e.target.value)}}
+                />
+            </div>
+            
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                <h1 className='text-2xl'>Arrival Date</h1>
+                <TextField
+                required
+                className="!mt-8 w-full md:w-2/3" 
+                id="standard-basic" 
+                label="Arrival Date" 
+                variant="standard"
+                type="date"
+                onChange={(e) => {setArrivalDate(e.target.value)}}
+                />
+            </div>
+            
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                <h1 className='text-2xl'>Instructor Name</h1>
+                <TextField
+                required
+                className="!mt-8 w-full md:w-2/3" 
+                id="standard-basic" 
+                label="Instructor Name" 
+                variant="standard"
+                onChange={(e) => {setInstructorName(e.target.value)}}
+                />
+            </div>
+            
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                <h1 className='text-2xl'>Instructor Number</h1>
+                <TextField
+                required
+                className="!mt-8 w-full md:w-2/3" 
+                id="standard-basic" 
+                label="Instructor Number" 
+                variant="standard"
+                onChange={(e) => {setInstructorNumber(e.target.value)}}
+                />
+            </div>
 
-            <div className='input-container w-full mt-5 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Team Name</h1>
                 <FormControl className='!mt-8 w-full md:w-64'>
                     <InputLabel id="demo-simple-select-label">Team Name</InputLabel>
@@ -202,7 +262,7 @@ const Register = () => {
                 </FormControl>
             </div>
 
-            <div className='input-container w-full mt-5 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>University Name</h1>
                 
                     
@@ -236,7 +296,7 @@ const Register = () => {
                 
             </div>
 
-            <div className='input-container w-full mt-5 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Upload your picture</h1>
                 {
                     pictureError &&
@@ -269,6 +329,7 @@ const Register = () => {
         <input type='submit' className='bg-violet-600 py-2 px-5 cursor-pointer' />
         </form>
     </div>
+    </>
   )
 }
 

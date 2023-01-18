@@ -44,7 +44,7 @@ const Navbar = () => {
   if(loading) return null
 
   return (
-    <nav className='flex fixed w-screen bg-black/70 md:bg-transparent flex-col md:flex-row justify-between items-center z-50'>
+    <nav className='flex fixed w-screen bg-black/70 md:bg-transparent flex-col md:flex-row justify-between items-center z-50 bg-gradient-to-b from-black to-black/0'>
       <div className='flex w-full justify-between items-center px-8 py-6'>
         <div>
           <h1 onClick={() => navigate('/')} className='text-3xl flex font-monument cursor-pointer'>Vikasana</h1>
@@ -54,11 +54,11 @@ const Navbar = () => {
         <div className='hidden md:block'>
           <ul className='flex font-tele'>
             <NavLink onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>About</NavLink>
-            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>Contact us</li>
-            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>College Map</li>
-            <NavLink to="/accommodation" style={({ isActive }) =>
+            
+            <NavLink to="/map" style={({ isActive }) =>
               isActive ? {textDecoration:'underline', textDecorationColor:'#FE23A8', textUnderlineOffset: '8px', textDecorationThickness: '2px'} : undefined
-            } className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>Accommodation</NavLink>
+            } className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>UNIVERSITY MAP</NavLink>
+            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>Contact us</li>
             
           </ul>
         </div>
