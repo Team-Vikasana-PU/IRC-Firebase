@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 
+import { QRious } from 'react-qrious'
+import { useQrious } from 'react-qrious'
+
 import { useNavigate } from 'react-router-dom';
 
 import { onAuthStateChanged, OAuthProvider, signOut } from "firebase/auth";
@@ -8,7 +11,7 @@ import { onAuthStateChanged, OAuthProvider, signOut } from "firebase/auth";
 import { auth, db, teams_collection, storage } from '../firebase'
 import { doc, getDoc, getDocs , setDoc } from "firebase/firestore";
 
-import { ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, uploadBytes, uploadString } from "firebase/storage";
 
 import banner from '../assets/register_banner.png'
 import bg from '../assets/register_bg.png'
@@ -30,6 +33,9 @@ const Register = () => {
     const navigate = useNavigate()
     const [user, setUser] = useState()
 
+    const [value, setValue] = useState('')
+    const [dataUrl, setQrious] = useQrious({ value })
+
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
           if(user) {
@@ -40,6 +46,7 @@ const Register = () => {
               navigate('/profile')
             }
             setUser(user)
+            setValue(`https://irc.vikasana.tech/user/${user?.uid}`)
           }
           else {
             navigate('/login')
@@ -65,6 +72,7 @@ const Register = () => {
     const [arrivalDate, setArrivalDate] = useState('')
 
     const [pictureError, setPictureError] = useState(false)
+    
 
     useEffect(() => {
         const getAllTeams = async () => {
@@ -98,6 +106,14 @@ const Register = () => {
         const imageSnapShot = await uploadBytes(storageRef, picture, metadata)
         const imageURL = await getDownloadURL(storageRef)
 
+        
+        console.log(dataUrl)
+
+        const qrRef = ref(storage, `/profile_qr/${user.uid}_${Date.now()}`)
+        const qrmeta = "image/png"
+        const qrsnap = await uploadString(qrRef, dataUrl, 'data_url', qrmeta)
+        const qrURL = await getDownloadURL(qrRef)
+
         const data = {
             email: email,
             first_name: fName,
@@ -112,6 +128,7 @@ const Register = () => {
             team_ref: team.id,
             avatar: imageURL,
             verified: false,
+            qr:qrURL
         }
 
         const res = await setDoc(doc(db, "participants", user.uid), data);
@@ -136,7 +153,7 @@ const Register = () => {
                 <h1 className='text-3xl'>IRC 2023 Registration Form</h1>
                 <p className='my-4 text-form'>Hosted by Team Vikasana</p>
                 <hr></hr>
-                <p className='text-form mt-2'>lorem lorem lorem lorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem loremlorem lorem lorem</p>
+                <p className='text-form mt-2'>Conceptualize, design, develop and operate an astronaut-assistive next-gen Mars rover and perform specific missions in Mars simulated conditions</p>
             </div>
 
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
