@@ -54,20 +54,20 @@ const User = () => {
   return (
     <>
         <Navbar />
-        <div className='w-screen min-h-screen bg-background pt-32 profile-container'>
+        <div className='w-screen min-h-screen bg-background py-32 profile-container'>
         
           <div className='flex flex-col md:flex-row w-full justify-around items-center'>
             <div className=''>
               <Avatar sx={{width: 200, height: 200}} src={data?.avatar} />
             </div>
 
-            <div className='verification-container flex flex-col items-center font-circular'>
+            <div className='verification-container flex flex-col items-center font-circular mt-10 md:mt-0'>
               <h3 className='text-white/80'>Verification Status</h3>
               <div className={`w-40 h-40 rounded-full ${data?.verified ? 'bg-green-500' :'bg-red-600'} mt-5`}></div>
               <h3 className='text-white mt-5'>{data?.verified ? 'Verified' : 'Not Verified'}</h3>
             </div>
 
-            <div className='qr-container bg-white p-5 rounded-lg'>
+            <div className='qr-container bg-white p-5 rounded-lg mt-10 md:mt-0'>
               {/* <QRCode
                 size={200}
                 
