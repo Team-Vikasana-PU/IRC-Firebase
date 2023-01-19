@@ -56,7 +56,7 @@ const User = () => {
         <Navbar />
         <div className='w-screen min-h-screen bg-background pt-32 profile-container'>
         
-          <div className='flex w-full justify-around items-center'>
+          <div className='flex flex-col md:flex-row w-full justify-around items-center'>
             <div className=''>
               <Avatar sx={{width: 200, height: 200}} src={data?.avatar} />
             </div>
@@ -79,11 +79,11 @@ const User = () => {
             
           </div>
 
-          <div className='flex flex-wrap w-full justify-around mt-10'>
-            <div className='w-1/2 flex justify-center'>
+          <div className='flex flex-col md:flex-row flex-wrap w-full justify-around mt-10'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
                 
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="First Name" 
                 InputProps={{
@@ -97,10 +97,10 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
                 
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Last Name" 
                 InputProps={{
@@ -114,9 +114,9 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Email"
                 type='email' 
@@ -131,9 +131,9 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Mobile"
                  
@@ -148,9 +148,9 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Team Name"
                  
@@ -164,9 +164,9 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="University Name"
                  
@@ -180,9 +180,9 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Instructor Name"
                  
@@ -196,9 +196,9 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Instructor Number"
                  
@@ -212,9 +212,9 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Blood Group"
                  
@@ -228,9 +228,9 @@ const User = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Arrival Date"
                 type='date'
