@@ -104,20 +104,20 @@ const Profile = () => {
   return (
     <>
         <Navbar />
-        <div className='w-screen min-h-screen bg-background pt-32 profile-container'>
+        <div className='w-screen min-h-screen bg-background py-32 profile-container'>
         
-          <div className='flex w-full justify-around items-center'>
+          <div className='flex flex-col md:flex-row w-full justify-around items-center'>
             <div className=''>
               <Avatar sx={{width: 200, height: 200}} src={data?.avatar} />
             </div>
 
-            <div className='verification-container flex flex-col items-center font-circular'>
+            <div className='verification-container flex flex-col items-center font-circular mt-10 md:mt-0'>
               <h3 className='text-white/80'>Verification Status</h3>
               <div className={`w-40 h-40 rounded-full ${data?.verified ? 'bg-green-500' :'bg-red-600'} mt-5`}></div>
               <h3 className='text-white mt-5'>{data?.verified ? 'Verified' : 'Not Verified'}</h3>
             </div>
 
-            <div className='qr-container bg-white p-5 rounded-lg group'>
+            <div className='qr-container bg-white p-5 rounded-lg group mt-10 md:mt-0'>
               {/* <QRCode
                 size={200}
                 
@@ -129,11 +129,11 @@ const Profile = () => {
             
           </div>
 
-          <div className='flex flex-wrap w-full justify-around mt-10'>
-            <div className='w-1/2 flex justify-center'>
+          <div className='flex flex-col md:flex-row flex-wrap w-full justify-around mt-10'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
                 
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="First Name" 
                 InputProps={{
@@ -147,10 +147,10 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
                 
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Last Name" 
                 InputProps={{
@@ -164,9 +164,9 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Email"
                 type='email' 
@@ -181,9 +181,9 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Mobile"
                  
@@ -198,9 +198,9 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Team Name"
                  
@@ -215,9 +215,9 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="University Name"
                  
@@ -232,9 +232,9 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Instructor Name"
                  
@@ -248,9 +248,9 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Instructor Number"
                  
@@ -264,9 +264,9 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Blood Group"
                  
@@ -280,9 +280,9 @@ const Profile = () => {
                 />
             </div>
             
-            <div className='w-1/2 flex justify-center'>
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
               <TextField
-                className="!mt-8 w-2/3" 
+                className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Arrival Date"
                 type='date'

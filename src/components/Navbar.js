@@ -101,28 +101,33 @@ const Navbar = () => {
           <div className=' w-full justify-center items-center'>
             <ul className='flex flex-col items-center font-tele'>
               <li className='py-5 text-xl'>About</li>
+              
+              <li onClick={() => navigate('/map')} className='py-5 text-xl'>University Map</li>
+              
               <li className='py-5 text-xl'>Contact us</li>
-              <li className='py-5 text-xl'>College Map</li>
-              <li onClick={() => navigate('/accommodation')} className='py-5 text-xl'>Accommodation</li>
               
               <li className='py-5 text-xl'>
               {
                 user ? 
                   data ?
-                    <div className='flex items-center'>
-                      <button onClick={() => navigate('/profile')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-4 rounded-lg mr-3'>PROFILE</button>
-                      <LogoutIcon onClick={async () => {
-                        await signOut(auth)
+                    <div className='flex flex-col items-center'>
+                      <button onClick={() => navigate('/profile')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-4 rounded-lg'>PROFILE</button>
+                      <button onClick={async () => {
+                        auth.signOut()
+                        setUser()
+                        setData()
                         navigate('/')
-                      }} fontSize='large' className='text-red-600' />
+                      }} className='text-xl mt-5 bg-red-600 active:bg-red-500 border-2 border-solid border-white py-1 px-4 rounded-lg'>LOGOUT</button>
                     </div>
                     :
-                    <div className='flex items-center'>
-                      <button onClick={() => navigate('/register')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-4 rounded-lg mr-3'>REGISTER</button>
-                      <LogoutIcon onClick={async () => {
-                        await signOut(auth)
+                    <div className='flex flex-col mt-10 items-center'>
+                      <button onClick={() => navigate('/register')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-4 rounded-lg'>REGISTER</button>
+                      <button onClick={async () => {
+                        auth.signOut()
+                        setUser()
+                        setData()
                         navigate('/')
-                      }} fontSize='large' className='text-red-600' />
+                      }} className='text-xl mt-5 bg-red-600 active:bg-red-500 border-2 border-solid border-white py-1 px-4 rounded-lg'>LOGOUT</button>
                     </div>
                   :
                   <button onClick={() => navigate('/login')} className='text-xl bg-gradientBlue border-2 border-solid border-white py-1 px-3 rounded-lg'>PARTICIPANT LOGIN</button>
