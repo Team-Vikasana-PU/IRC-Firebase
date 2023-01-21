@@ -54,7 +54,7 @@ const User = () => {
   return (
     <>
         <Navbar />
-        <div className='w-screen min-h-screen bg-background py-32 profile-container'>
+        <div className='w-full min-h-screen bg-background py-32 profile-container'>
         
           <div className='flex flex-col md:flex-row w-full justify-around items-center'>
             <div className=''>

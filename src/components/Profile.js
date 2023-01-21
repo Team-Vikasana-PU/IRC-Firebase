@@ -35,6 +35,8 @@ const Profile = () => {
   const [university, setUniversity] = useState('')
   const [picture, setPicture] = useState()
   const [arrivalDate, setArrivalDate] = useState('')
+  const [accommodationLink, setAccommodationLink] = useState('')
+  const [teamCaptain, setTeamCaptain] = useState(false)
 
   
 
@@ -60,6 +62,8 @@ const Profile = () => {
         setInstructorName(docData?.instructor_name)
         setInstructorNumber(docData?.instructor_number)
         setArrivalDate(docData?.arrival_date)
+        setAccommodationLink(docData?.accommodation)
+        setTeamCaptain(docData?.captain)
 
         
 
@@ -87,7 +91,7 @@ const Profile = () => {
       instructor_name: instructorName,
       instructor_number: instructorNumber,
       arrival_date: arrivalDate,
-      
+      accommodation:accommodationLink
       
       
       
@@ -104,7 +108,7 @@ const Profile = () => {
   return (
     <>
         <Navbar />
-        <div className='w-screen min-h-screen bg-background py-32 profile-container'>
+        <div className='w-full min-h-screen bg-background py-32 profile-container'>
         
           <div className='flex flex-col md:flex-row w-full justify-around items-center'>
             <div className=''>
@@ -293,6 +297,38 @@ const Profile = () => {
                   readOnly: !editing,
                 }}
                 onChange={(e) => setArrivalDate(e.target.value)}
+                />
+            </div>
+            
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
+              <TextField
+                className="!mt-8 w-full md:w-2/3" 
+                id="standard-basic" 
+                label="Accommodation link"
+                
+                variant="filled"
+                defaultValue={accommodationLink}
+                ///value={data?.first_name}
+                InputProps={{
+                  readOnly: !editing,
+                }}
+                onChange={(e) => setAccommodationLink(e.target.value)}
+                />
+            </div>
+            
+            <div className='w-full px-3 md:px-0 md:w-1/2 flex justify-center'>
+              <TextField
+                className="!mt-8 w-full md:w-2/3" 
+                id="standard-basic" 
+                label="Team captain"
+                disabled
+                variant="filled"
+                defaultValue={teamCaptain ? 'Yes' : 'No'}
+                ///value={data?.first_name}
+                InputProps={{
+                  readOnly: !editing,
+                }}
+                
                 />
             </div>
             

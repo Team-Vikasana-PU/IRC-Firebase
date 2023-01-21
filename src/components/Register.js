@@ -24,8 +24,16 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import ImageIcon from '@mui/icons-material/Image';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
+import FormLabel from '@mui/material/FormLabel';
+
 import Button from '@mui/material/Button';
 import UploadIcon from '@mui/icons-material/Upload';
+
+import AutorenewIcon from '@mui/icons-material/Autorenew';
 
 
 const Register = () => {
@@ -70,8 +78,13 @@ const Register = () => {
     const [university, setUniversity] = useState('')
     const [picture, setPicture] = useState()
     const [arrivalDate, setArrivalDate] = useState('')
+    const [foodType, setFoodType] = useState('')
+    const [teamCaptain, setTeamCaptain] = useState(false)
+    const [accommodationLink, setAccommodationLink] = useState('')
 
     const [pictureError, setPictureError] = useState(false)
+
+    const [submitLoading, setSubmitLoading] = useState(false)
     
 
     useEffect(() => {
@@ -101,13 +114,13 @@ const Register = () => {
             return
         }
 
+        setSubmitLoading(true)
+
         const storageRef = ref(storage, `/user_images/${user.uid}_${Date.now()}`)
         const metadata = picture.type
         const imageSnapShot = await uploadBytes(storageRef, picture, metadata)
         const imageURL = await getDownloadURL(storageRef)
 
-        
-        console.log(dataUrl)
 
         const qrRef = ref(storage, `/profile_qr/${user.uid}_${Date.now()}`)
         const qrmeta = "image/png"
@@ -124,10 +137,13 @@ const Register = () => {
             instructor_name: instructorName,
             instructor_number: instructorNumber,
             arrival_date: arrivalDate,
+            accommodation: accommodationLink,
             university: team.university,
             team_ref: team.id,
             avatar: imageURL,
             verified: false,
+            food: foodType,
+            captain: teamCaptain,
             qr:qrURL
         }
 
@@ -142,7 +158,7 @@ const Register = () => {
   return (
     <>
     <Navbar />
-    <div className='w-full bg-cover bg-fixed bg-background py-10'>
+    <div className='w-full bg-cover bg-fixed bg-background py-16'>
         <form className='w-full flex flex-col items-center' onSubmit={handleSubmit}>
         <div className='register-container flex flex-col w-11/12 md:w-2/5 text-stone-50 py-10'>
             <div className='image-container mb-5'>
@@ -156,15 +172,16 @@ const Register = () => {
                 <p className='text-form mt-2'>Conceptualize, design, develop and operate an astronaut-assistive next-gen Mars rover and perform specific missions in Mars simulated conditions</p>
             </div>
 
+
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Email</h1>
                 <TextField
                 required
                 className="!mt-8 w-full md:w-2/3" 
-                id="standard-basic" 
+                id="outlined-basic" 
                 label="Email" 
                 type="email"
-                variant="standard"
+                variant="outlined"
                 onChange={(e) => {setEmail(e.target.value)}}
                 />
             </div>
@@ -177,7 +194,7 @@ const Register = () => {
                 className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="First name" 
-                variant="standard"
+                variant="outlined"
                 onChange={(e) => {setFName(e.target.value)}}
                 />
             </div>
@@ -189,7 +206,7 @@ const Register = () => {
                 className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Last name" 
-                variant="standard" 
+                variant="outlined" 
                 onChange={(e) => {setLName(e.target.value)}}
                 />
             </div>
@@ -201,7 +218,7 @@ const Register = () => {
                 className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
                 label="Mobile number" 
-                variant="standard"
+                variant="outlined"
                 onChange={(e) => {setMobileNo(e.target.value)}}
                 />
             </div>
@@ -209,11 +226,11 @@ const Register = () => {
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Blood Group</h1>
                 <TextField
-                required
+                
                 className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
-                label="Blood Group" 
-                variant="standard"
+                label="Blood group" 
+                variant="outlined"
                 onChange={(e) => {setBloodGroup(e.target.value)}}
                 />
             </div>
@@ -224,36 +241,52 @@ const Register = () => {
                 required
                 className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
-                label="Arrival Date" 
-                variant="standard"
+                label="Arrival date" 
+                variant="outlined"
                 type="date"
                 onChange={(e) => {setArrivalDate(e.target.value)}}
                 />
             </div>
-            
+
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
-                <h1 className='text-2xl'>Instructor Name</h1>
+                <h1 className='text-2xl'>Your accommodation location</h1>
+                <p className='text-white/80'>Google maps link of the place you will be staying during the event</p>
                 <TextField
-                required
+                
                 className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
-                label="Instructor Name" 
-                variant="standard"
+                label="Accommodation link" 
+                variant="outlined"
+                onChange={(e) => {setAccommodationLink(e.target.value)}}
+                />
+            </div>
+            
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                <h1 className='text-2xl'>Faculty Instructor Name</h1>
+                <p className='text-white/80'>Name of the faculty instructor who will be with you during the competition</p>
+                <TextField
+                
+                className="!mt-8 w-full md:w-2/3" 
+                id="standard-basic" 
+                label="Instructor name" 
+                variant="outlined"
                 onChange={(e) => {setInstructorName(e.target.value)}}
                 />
             </div>
             
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
-                <h1 className='text-2xl'>Instructor Number</h1>
+                <h1 className='text-2xl'>Faculty Instructor Number</h1>
+                <p className='text-white/80'>Number of the faculty instructor who will be with you during the competition</p>
                 <TextField
-                required
+                
                 className="!mt-8 w-full md:w-2/3" 
                 id="standard-basic" 
-                label="Instructor Number" 
-                variant="standard"
+                label="Instructor number" 
+                variant="outlined"
                 onChange={(e) => {setInstructorNumber(e.target.value)}}
                 />
             </div>
+
 
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <h1 className='text-2xl'>Team Name</h1>
@@ -289,7 +322,7 @@ const Register = () => {
                         className="!mt-8 w-full md:w-2/3" 
                         id="standard-basic" 
                         label="University Name" 
-                        variant="standard"
+                        variant="outlined"
                         defaultValue="University"
                         value={team?.university}
                         InputProps={{
@@ -297,20 +330,51 @@ const Register = () => {
                           }}
                         
                     />
-                    {/* <Select
-                    required
-                    
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={team?.university}
-                    label="University Name"
-                    onChange={(e) => setUniversity(e.target.value)}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select> */}
                 
+            </div>
+
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                <FormControl>
+                    <h1 className='text-2xl'>Are you the team captain?</h1>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        disabled
+                        name="radio-buttons-group"
+                        className='!mt-5'
+                        defaultValue="false"
+                        onChange={(e)=>{
+                            if(e.target.value==="true"){
+                                setTeamCaptain(true)
+                            } else {
+                                setTeamCaptain(false)
+                            }
+
+                        }}
+                    >
+                        <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                        <FormControlLabel value="false" control={<Radio />} label="No" />
+
+                    </RadioGroup>
+                </FormControl>
+            </div>
+
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                <FormControl>
+                    <h1 className='text-2xl'>Food Preference</h1>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        
+                        name="radio-buttons-group"
+                        className='!mt-5'
+                        defaultValue="vegan"
+                        onChange={(e)=>setFoodType(e.target.value)}
+                    >
+                        <FormControlLabel value="vegan" control={<Radio />} label="Vegan" />
+                        <FormControlLabel value="veg" control={<Radio />} label="Veg" />
+                        <FormControlLabel value="nonveg" control={<Radio />} label="Non-Veg" />
+                        
+                    </RadioGroup>
+                </FormControl>
             </div>
 
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
@@ -343,7 +407,14 @@ const Register = () => {
             
         </div>
 
-        <input type='submit' className='bg-violet-600 py-2 px-5 cursor-pointer' />
+        {
+            submitLoading ? 
+            <AutorenewIcon fontSize="large" className="animate-spin" />
+            
+            :
+            <input type='submit' className='bg-gradientBlue py-2 px-8 cursor-pointer text-xl' />
+        }
+        
         </form>
     </div>
     </>

@@ -68,6 +68,11 @@ input[type=date]:focus::-webkit-datetime-edit {
   -webkit-text-fill-color: rgb(209, 209, 209)!important;
 }
 
+.MuiRadio-root {
+  color: #022DFE!important;
+}
+
+
 .auth-form-container, .login-form, .register-form{
   display: flex;
   flex-direction: column;
