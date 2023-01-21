@@ -53,12 +53,17 @@ const Navbar = () => {
 
         <div className='hidden md:block'>
           <ul className='flex font-tele'>
-            <NavLink onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>About</NavLink>
+            <NavLink to="/about" style={({ isActive }) =>
+              isActive ? {textDecoration:'underline', textDecorationColor:'#FE23A8', textUnderlineOffset: '8px', textDecorationThickness: '2px'} : undefined
+            } className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>About</NavLink>
             
             <NavLink to="/map" style={({ isActive }) =>
               isActive ? {textDecoration:'underline', textDecorationColor:'#FE23A8', textUnderlineOffset: '8px', textDecorationThickness: '2px'} : undefined
             } className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>UNIVERSITY MAP</NavLink>
-            <li onClick={() => navigate('#')} className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>Contact us</li>
+
+            <NavLink to="/contact" style={({ isActive }) =>
+              isActive ? {textDecoration:'underline', textDecorationColor:'#FE23A8', textUnderlineOffset: '8px', textDecorationThickness: '2px'} : undefined
+            } className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>Contact us</NavLink>
             
           </ul>
         </div>
@@ -100,11 +105,12 @@ const Navbar = () => {
         <div className={`mobile-menu bg-black/70 backdrop-blur-sm h-screen w-full`}>
           <div className=' w-full justify-center items-center'>
             <ul className='flex flex-col items-center font-tele'>
-              <li className='py-5 text-xl'>About</li>
+
+              <li onClick={() => navigate('/about')} className='py-5 text-xl'>About</li>
               
               <li onClick={() => navigate('/map')} className='py-5 text-xl'>University Map</li>
               
-              <li className='py-5 text-xl'>Contact us</li>
+              <li onClick={() => navigate('/contact')} className='py-5 text-xl'>Contact us</li>
               
               <li className='py-5 text-xl'>
               {
