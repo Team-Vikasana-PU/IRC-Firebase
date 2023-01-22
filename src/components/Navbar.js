@@ -60,6 +60,10 @@ const Navbar = () => {
             <NavLink to="/map" style={({ isActive }) =>
               isActive ? {textDecoration:'underline', textDecorationColor:'#FE23A8', textUnderlineOffset: '8px', textDecorationThickness: '2px'} : undefined
             } className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>UNIVERSITY MAP</NavLink>
+            
+            <NavLink to="/accommodation" style={({ isActive }) =>
+              isActive ? {textDecoration:'underline', textDecorationColor:'#FE23A8', textUnderlineOffset: '8px', textDecorationThickness: '2px'} : undefined
+            } className='mx-4 cursor-pointer hover:underline decoration-gradientBlue underline-offset-8 decoration-2'>Accommodation</NavLink>
 
             <NavLink to="/contact" style={({ isActive }) =>
               isActive ? {textDecoration:'underline', textDecorationColor:'#FE23A8', textUnderlineOffset: '8px', textDecorationThickness: '2px'} : undefined
@@ -109,6 +113,7 @@ const Navbar = () => {
               <li onClick={() => navigate('/about')} className='py-5 text-xl'>About</li>
               
               <li onClick={() => navigate('/map')} className='py-5 text-xl'>University Map</li>
+              <li onClick={() => navigate('/accommodation')} className='py-5 text-xl'>Accommodation</li>
               
               <li onClick={() => navigate('/contact')} className='py-5 text-xl'>Contact us</li>
               

@@ -77,10 +77,12 @@ const Register = () => {
     const [allTeams, setAllTeams] = useState([])
     const [university, setUniversity] = useState('')
     const [picture, setPicture] = useState()
+    const [covid, setCovid] = useState()
     const [arrivalDate, setArrivalDate] = useState('')
     const [foodType, setFoodType] = useState('')
     const [teamCaptain, setTeamCaptain] = useState(false)
     const [accommodationLink, setAccommodationLink] = useState('')
+    const [courier, setCourier] = useState('')
 
     const [pictureError, setPictureError] = useState(false)
 
@@ -126,6 +128,10 @@ const Register = () => {
         const qrmeta = "image/png"
         const qrsnap = await uploadString(qrRef, dataUrl, 'data_url', qrmeta)
         const qrURL = await getDownloadURL(qrRef)
+        
+        const covidRef = ref(storage, `/covid/${user.uid}_${Date.now()}`)        
+        const covidsnap = await uploadBytes(covidRef, covid)
+        const covidUrl = await getDownloadURL(covidRef)
 
         const data = {
             email: email,
@@ -141,9 +147,11 @@ const Register = () => {
             university: team.university,
             team_ref: team.id,
             avatar: imageURL,
+            covid:covidUrl,
             verified: false,
             food: foodType,
             captain: teamCaptain,
+            storage: courier,
             qr:qrURL
         }
 
@@ -357,6 +365,39 @@ const Register = () => {
                     </RadioGroup>
                 </FormControl>
             </div>
+            
+            {
+                teamCaptain &&
+                <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                    <FormControl>
+                        <h1 className='text-2xl'>Storage facility for rover in University</h1>
+                        <p className='text-white/80'>We organizers will not be responsible for this, but we will take your acknowledgement after you lock the room.<br></br>
+                        If you want to take your rover back to your accommodation, you must arrange your own courier service.
+                        </p>
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            disabled
+                            name="radio-buttons-group"
+                            className='!mt-5'
+                            defaultValue="false"
+                            onChange={(e)=>{
+                                if(e.target.value==="true"){
+                                    setCourier(true)
+                                } else {
+                                    setCourier(false)
+                                }
+
+                            }}
+                        >
+                            <FormControlLabel value="true" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="false" control={<Radio />} label="No" />
+
+                        </RadioGroup>
+                    </FormControl>
+                </div>
+
+            }
+            
 
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
                 <FormControl>
@@ -375,6 +416,20 @@ const Register = () => {
                         
                     </RadioGroup>
                 </FormControl>
+            </div>
+
+            <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
+                <h1 className='text-2xl'>Upload your Covid-19 Vaccination Certificate</h1>
+                
+                <Button sx={{width:'500px'}} className='!rounded-lg !py-3 !mt-8 !w-full !md:w-64 text-left !text-blue-600 !bg-transparent !border-solid !border !border-stone-50' variant="contained" component="label">
+                    { covid ? <ImageIcon /> : <UploadIcon /> }
+                    <p className='whitespace-nowrap	overflow-hidden text-ellipsis'>
+                    { covid ? covid.name : 'Upload Certificate' }
+                    </p>
+                    <input onChange={(e) => {
+                        setCovid(e.target.files[0])
+                        }} required hidden type="file" />
+                </Button>
             </div>
 
             <div className='input-container w-full mt-10 pt-7 pb-5 px-5 bg-black rounded-2xl border-solid border-2 border-stone-100'>
@@ -399,8 +454,6 @@ const Register = () => {
                         setPicture(e.target.files[0])
                         }} hidden accept="image/*" type="file" />
                 </Button>
-                
-                
             </div>
 
             
