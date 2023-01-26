@@ -117,7 +117,7 @@ const Profile = () => {
 
             <div className='verification-container flex flex-col items-center font-circular mt-10 md:mt-0'>
               <h3 className='text-white/80'>Verification Status</h3>
-              <div className={`w-40 h-40 rounded-full ${data?.verified ? 'bg-green-500' :'bg-red-600'} mt-5`}></div>
+              <div className={`w-40 h-40 rounded-full ${data?.verified ? 'bg-green-500' :'bg-green-500'} mt-5`}></div>
               <h3 className='text-white mt-5'>{data?.verified ? 'Verified' : 'Not Verified'}</h3>
             </div>
 
